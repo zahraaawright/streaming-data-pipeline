@@ -1,7 +1,7 @@
 package com.labs1904.hwe
 
 import org.apache.log4j.Logger
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{Dataset, SparkSession}
 import org.apache.spark.sql.functions._
 
 object WordCountBatchApp {
@@ -17,12 +17,23 @@ object WordCountBatchApp {
         .master("local[*]")
         .getOrCreate()
       import spark.implicits._
+      //option + return (buttons to generate type)
+      val sentences: Dataset[String] = spark.read.csv("src/main/resources/sentences.txt").as[String]
+      //sentences.printSchema
+      //sentences.show(truncate = false) //shows the RDD/DataFrame/DataSet
 
-      val sentences = spark.read.csv("src/main/resources/sentences.txt").as[String]
-      sentences.printSchema
+      val words = sentences.flatMap(word => splitSentenceIntoWords(word.toLowerCase))
+      val wordCount1 = words.withColumnRenamed("value", "Words").groupBy("Words").count()
+      val wordCount = wordCount1.sort(col("count").desc)
+      //val wordCount = words.groupBy("value")
+      //words.groupBy("value")
+      wordCount.printSchema()
+      wordCount.show(truncate = false)
+
+
 
       // TODO: implement me
-
+      //Update the application to output each word and the number of times it occurs, sorted by count descending. Output:
       //val counts = ???
 
       //counts.foreach(wordCount=>println(wordCount))
@@ -33,6 +44,9 @@ object WordCountBatchApp {
 
   // TODO: implement this function
   // HINT: you may have done this before in Scala practice...
-  def splitSentenceIntoWords(sentence: String): Array[String] = ???
+  //takes each sentence and splits it into words
+  def splitSentenceIntoWords(sentence: String): Array[String] = {
+    sentence.split(" ")
+  }
 
 }
