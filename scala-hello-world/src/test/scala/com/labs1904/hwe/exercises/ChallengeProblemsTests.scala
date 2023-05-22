@@ -22,7 +22,7 @@ class ChallengeProblemsTests extends FunSpec{
 //      assert(expected === actual)
 //    }
 //  }
-//
+
 //  describe("Challenge Three") {
 //    it("Checks if list size is correct"){
 //      val input:List[Int] = List(1,2,3,4,5,6)
@@ -31,7 +31,7 @@ class ChallengeProblemsTests extends FunSpec{
 //      assert(expected === actual)
 //    }
 //  }
-//
+
 //  describe("Challenge Four") {
 //    it("Checks if sum is correct"){
 //      val input:Int = 7
@@ -40,6 +40,7 @@ class ChallengeProblemsTests extends FunSpec{
 //      assert(expected === actual)
 //    }
 //  }
+
 //  describe("Challenge Five") {
 //    it("Uses .map to uppercase everything") {
 //      val input = List("Scala", "is", "dope")
@@ -103,7 +104,7 @@ class ChallengeProblemsTests extends FunSpec{
 //      assert(expected === actual)
 //    }
 //  }
-//
+
 //  describe("Challenge Eleven") {
 //    it("Checks if minimum value in list is returned") {
 //      val input:List[Int] = List(1,-4,19,10,0)
@@ -113,20 +114,20 @@ class ChallengeProblemsTests extends FunSpec{
 //    }
 //  }
 //
-//  describe("Challenge Twelve") {
-//    it("Checks if minimum is returned") {
-//      val input:List[Option[Int]] = List(Some(1),Some(-4),Some(19),Some(10),Some(-3))
-//      val expected = Some(-4)
-//      val actual = ChallengeProblems.minimumOption(input)
-//      assert(expected === actual)
-//    }
-//    it("Returns a None when passed a None") {
-//      val input:List[Option[Int]] = List(None, None)
-//      val expected = None
-//      val actual = ChallengeProblems.minimumOption(input)
-//      assert(expected === actual)
-//    }
-//  }
+  describe("Challenge Twelve") {
+    it("Checks if minimum is returned") {
+      val input:List[Option[Int]] = List(Some(1),Some(-4),Some(19),Some(10),Some(-3))
+      val expected = Some(-4)
+      val actual = ChallengeProblems.minimumOption(input)
+      assert(expected === actual)
+    }
+    it("Returns a None when passed a None") {
+      val input:List[Option[Int]] = List(None, None)
+      val expected = None
+      val actual = ChallengeProblems.minimumOption(input)
+      assert(expected === actual)
+    }
+  }
 
 
 
